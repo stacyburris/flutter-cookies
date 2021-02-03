@@ -1,0 +1,39 @@
+header {
+  font-size: x-large;
+  padding-top: 10px;
+}
+
+body{
+  background-color: lightblue;
+  margin: auto;
+  padding-left: 10px;
+  text-align: center;
+}
+
+table{
+  border: 2px solid blue;
+  padding: 1em;
+  margin: 1em;
+}
+
+th {
+  background-color: rgb(55, 56, 56);
+  color: white;
+  border: 2px solid plum;
+  padding: 1em;
+  margin: 1em;
+}
+
+
+td {
+  background-color: rgb(55, 56, 56);
+  color: white;
+  border: 2px solid pink;
+  padding: 1em;
+  margin: 1em;
+}
+
+footer{
+  position: absolute;
+  bottom: 10px;
+} 
