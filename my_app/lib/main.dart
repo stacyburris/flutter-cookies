@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:developer';
 
 void main() {
   runApp(MaterialApp(initialRoute: '/', routes: {
@@ -127,10 +130,12 @@ class SecondScreen extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: const Text(_title)),
         body: Table(),
+            MyCustomForm(),
       ),
     );
   }
 }
+
 
 class Table extends StatelessWidget {
   Table({Key key}) : super(key: key);
@@ -362,5 +367,148 @@ class Table extends StatelessWidget {
                 )
               ],
             )));
+
+class MyCustomForm extends StatefulWidget {
+  @override
+  MyCustomFormState createState() {
+    return MyCustomFormState();
+  }
+}
+
+class MyCustomFormState extends State<MyCustomForm> {
+  // Create a global key that uniquely identifies the Form widget
+  // and allows validation of the form.
+  //
+
+  TextEditingController cityController = new TextEditingController();
+  TextEditingController minCustomersController = new TextEditingController();
+  TextEditingController maxCustomersController = new TextEditingController();
+  TextEditingController averageCookiesController = new TextEditingController();
+
+  // Note: This is a GlobalKey<FormState>,
+  // not a GlobalKey<MyCustomFormState>.
+  final _formKey = GlobalKey<FormState>();
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Build a Form widget using the _formKey created above.
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: 500.0,
+            child: TextFormField(
+              controller: cityController,
+              decoration: InputDecoration(
+                  icon: Icon(Icons.send),
+                  border: const OutlineInputBorder(),
+                  hintText: 'Add new store location'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
+          ),
+          Container(
+            width: 500.0,
+            child: TextFormField(
+              controller: minCustomersController,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              decoration: InputDecoration(
+                  icon: Icon(Icons.send),
+                  border: const OutlineInputBorder(),
+                  hintText: 'Minimum customers per hour (digits only)'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
+          ),
+          Container(
+            width: 500.0,
+            child: TextFormField(
+              controller: maxCustomersController,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              decoration: InputDecoration(
+                  icon: Icon(Icons.send),
+                  border: const OutlineInputBorder(),
+                  hintText: 'Maximum customers per hour (digits only)'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
+          ),
+          Container(
+            width: 500.0,
+            child: TextFormField(
+              controller: averageCookiesController,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              decoration: InputDecoration(
+                  icon: Icon(Icons.send),
+                  border: const OutlineInputBorder(),
+                  hintText: 'Average cookies per customer (digits only)'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                return showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(minCustomersController.text),
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                    );
+                  },
+                );
+              },
+              // Validate returns true if the form is valid, or false
+              // otherwise.
+              // if (_formKey.currentState.validate()) {
+              //   // If the form is valid, display a Snackbar.
+              //   Scaffold.of(context)
+              //       .showSnackBar(SnackBar(content: Text('Processing Data')));
+              // }
+              // },
+              child: Text('Submit'),
+            ),
+          ),
+        ],
+      ),
+    ); main
   }
 }
