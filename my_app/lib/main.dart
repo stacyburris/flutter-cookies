@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:developer';
 
 void main() {
   runApp(MaterialApp(initialRoute: '/', routes: {
@@ -157,64 +159,81 @@ class MyCustomFormState extends State<MyCustomForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          TextFormField(
-            controller: cityController,
-            decoration: InputDecoration(
-                border: InputBorder.none, hintText: 'Add new store location'),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
+          Container(
+            width: 500.0,
+            child: TextFormField(
+              controller: cityController,
+              decoration: InputDecoration(
+                  icon: Icon(Icons.send),
+                  border: const OutlineInputBorder(),
+                  hintText: 'Add new store location'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
           ),
-          TextFormField(
-            controller: minCustomersController,
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly
-            ],
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Minimum customers per hour (digits only)'),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
+          Container(
+            width: 500.0,
+            child: TextFormField(
+              controller: minCustomersController,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              decoration: InputDecoration(
+                  icon: Icon(Icons.send),
+                  border: const OutlineInputBorder(),
+                  hintText: 'Minimum customers per hour (digits only)'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
           ),
-          TextFormField(
-            controller: maxCustomersController,
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly
-            ],
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Maximum customers per hour (digits only)'),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
+          Container(
+            width: 500.0,
+            child: TextFormField(
+              controller: maxCustomersController,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              decoration: InputDecoration(
+                  icon: Icon(Icons.send),
+                  border: const OutlineInputBorder(),
+                  hintText: 'Maximum customers per hour (digits only)'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
           ),
-          TextFormField(
-            controller: averageCookiesController,
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly
-            ],
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Average cookies per customer (digits only)'),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
+          Container(
+            width: 500.0,
+            child: TextFormField(
+              controller: averageCookiesController,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              decoration: InputDecoration(
+                  icon: Icon(Icons.send),
+                  border: const OutlineInputBorder(),
+                  hintText: 'Average cookies per customer (digits only)'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
